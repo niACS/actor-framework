@@ -15,12 +15,12 @@
 		<Item Name="Get Actor Handles.vi" Type="VI" URL="../../../.Core/ActorFramework/Inspection API/Get Actor Handles.vi"/>
 		<Item Name="Get Registry Update Event.vi" Type="VI" URL="../../../.Core/ActorFramework/Inspection API/Get Registry Update Event.vi"/>
 		<Item Name="Ping Msg.lvclass" Type="LVClass" URL="../Inspection API/Ping msg/Ping Msg.lvclass"/>
-		<Item Name="Protected Actor Handle.lvclass" Type="LVClass" URL="../../../.Core/ActorFramework/Inspection API/Protected Actor Handle/Protected Actor Handle.lvclass"/>
+		<Item Name="Protected Actor Handle.lvclass" Type="LVClass" URL="../Inspection API/Protected Actor Handle/Protected Actor Handle.lvclass"/>
 	</Item>
 	<Item Name="Messages" Type="Folder">
 		<Property Name="NI.SortType" Type="Int">0</Property>
 		<Item Name="Time-Delayed Send Message" Type="Folder">
-			<Item Name="Time-Delay Override Options.ctl" Type="VI" URL="../../../.Core/ActorFramework/Time-Delayed Send Message/Time-Delay Override Options.ctl"/>
+			<Item Name="Time-Delay Override Options.ctl" Type="VI" URL="../Time-Delayed Send Message/Time-Delay Override Options.ctl"/>
 			<Item Name="Time-Delayed Send Message Core.vi" Type="VI" URL="../../../.Core/ActorFramework/Time-Delayed Send Message/Time-Delayed Send Message Core.vi"/>
 			<Item Name="Time-Delayed Send Message.vi" Type="VI" URL="../../../.Core/ActorFramework/Time-Delayed Send Message/Time-Delayed Send Message.vi"/>
 		</Item>
@@ -41,17 +41,17 @@
 			<Item Name="Get Clone Name.vi" Type="VI" URL="../tracing/Support/Get Clone Name.vi"/>
 			<Item Name="Localized Strings.vi" Type="VI" URL="../tracing/Support/Localized Strings.vi"/>
 			<Item Name="Registration Mode.ctl" Type="VI" URL="../tracing/Support/Registration Mode.ctl"/>
-			<Item Name="TDM Registration Mode.ctl" Type="VI" URL="../../../.Core/ActorFramework/tracing/Support/TDM Registration Mode.ctl"/>
-			<Item Name="TDM Registry.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Support/TDM Registry.vi"/>
-			<Item Name="This Actor.ctl" Type="VI" URL="../../../.Core/ActorFramework/tracing/Support/This Actor.ctl"/>
+			<Item Name="TDM Registration Mode.ctl" Type="VI" URL="../tracing/Support/TDM Registration Mode.ctl"/>
+			<Item Name="TDM Registry.vi" Type="VI" URL="../tracing/Support/TDM Registry.vi"/>
+			<Item Name="This Actor.ctl" Type="VI" URL="../tracing/Support/This Actor.ctl"/>
 		</Item>
 		<Item Name="Trace Generation" Type="Folder">
 			<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 			<Item Name="Generate Trace for Dropped Message.vi" Type="VI" URL="../tracing/Trace Generation/Generate Trace for Dropped Message.vi"/>
-			<Item Name="Generate Trace for Message.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Trace Generation/Generate Trace for Message.vi"/>
+			<Item Name="Generate Trace for Message.vi" Type="VI" URL="../tracing/Trace Generation/Generate Trace for Message.vi"/>
 			<Item Name="Generate Trace for New Actor.vi" Type="VI" URL="../tracing/Trace Generation/Generate Trace for New Actor.vi"/>
 			<Item Name="Generate Trace for New Time Delayed Message.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Trace Generation/Generate Trace for New Time Delayed Message.vi"/>
-			<Item Name="Generate Trace for Received Message.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Trace Generation/Generate Trace for Received Message.vi"/>
+			<Item Name="Generate Trace for Received Message.vi" Type="VI" URL="../tracing/Trace Generation/Generate Trace for Received Message.vi"/>
 			<Item Name="Generate Trace for Skipped Time-Delayed Message.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Trace Generation/Generate Trace for Skipped Time-Delayed Message.vi"/>
 			<Item Name="Generate Trace for Stopped Actor.vi" Type="VI" URL="../tracing/Trace Generation/Generate Trace for Stopped Actor.vi"/>
 			<Item Name="Generate Trace for Stopped Time-Delayed Message.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Trace Generation/Generate Trace for Stopped Time-Delayed Message.vi"/>
@@ -59,11 +59,11 @@
 		<Item Name="Generate Custom Trace.vi" Type="VI" URL="../../../.Core/ActorFramework/tracing/Generate Custom Trace.vi"/>
 	</Item>
 	<Item Name="Actor.lvclass" Type="LVClass" URL="../Actor/Actor.lvclass"/>
-	<Item Name="Init Actor Queues FOR TESTING ONLY.vi" Type="VI" URL="../../../.Core/ActorFramework/Actor/Init Actor Queues FOR TESTING ONLY.vi"/>
-	<Item Name="Message Dequeuer.lvclass" Type="LVClass" URL="../../../.Core/ActorFramework/Message Dequeuer/Message Dequeuer.lvclass"/>
+	<Item Name="Message Dequeuer.lvclass" Type="LVClass" URL="../Message Dequeuer/Message Dequeuer.lvclass"/>
 	<Item Name="Message Enqueuer.lvclass" Type="LVClass" URL="../Message Enqueuer/Message Enqueuer.lvclass"/>
 	<Item Name="Message Priority Queue.lvclass" Type="LVClass" URL="../Message Priority Queue/Message Priority Queue.lvclass">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 	</Item>
-	<Item Name="Message Queue.lvclass" Type="LVClass" URL="../../../.Core/ActorFramework/Message Queue/Message Queue.lvclass"/>
+	<Item Name="Message Queue.lvclass" Type="LVClass" URL="../Message Queue/Message Queue.lvclass"/>
+	<Item Name="Init Actor Queues FOR TESTING ONLY.vi" Type="VI" URL="../../../.Core/ActorFramework/Actor/Init Actor Queues FOR TESTING ONLY.vi"/>
 </Library>
