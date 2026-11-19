@@ -13,6 +13,7 @@
 	<Item Name="Get Project Item from ID.vi" Type="VI" URL="../Get Project Item from ID.vi"/>
 	<Item Name="Inline SubVI.vi" Type="VI" URL="../Inline SubVI.vi"/>
 	<Item Name="Resolve Symbolic Paths.vi" Type="VI" URL="../Resolve Symbolic Paths.vi"/>
+	<Item Name="Root Actor Class Is Loaded.vi" Type="VI" URL="../Root Actor Class Is Loaded.vi"/>
 	<Item Name="Update Target Tag - PPL Path.vi" Type="VI" URL="../Update Target Tag - PPL Path.vi"/>
 	<Item Name="Validation Mode.ctl" Type="VI" URL="../Validation Mode.ctl"/>
 </Library>

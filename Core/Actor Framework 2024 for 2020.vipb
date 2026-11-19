@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2024-08-22 09:23:48" Modified_Date="2024-10-13 14:36:46" Creator="allen" Comments="" ID="ce1644189951a2152e1cc27cc3dc0e30">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2024-08-22 09:23:48" Modified_Date="2026-03-19 14:06:37" Creator="allen" Comments="" ID="0d962ace13b7856acda8745da688c037">
   <Library_General_Settings>
     <Package_File_Name>Actor_Framework_2024_for_2020</Package_File_Name>
-    <Library_Version>1.0.1.11</Library_Version>
+    <Library_Version>2.0.0.24</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..\Builds</Library_Output_Folder>
@@ -27,12 +27,34 @@
     </Custom_Action_VIs>
     <VI_Package_Configuration_File>Actor Framework 2024 for 2020.vipc</VI_Package_Configuration_File>
     <Description>
-      <One_Line_Description_Summary>Backport of Actor Framework 2024 for 2020 and later.</One_Line_Description_Summary>
-      <Description/>
+      <One_Line_Description_Summary>Actor Framework reorganized for improved PPL builds.</One_Line_Description_Summary>
+      <Description>This product updates the core Actor Framework libraries that ship with LabVIEW - Actor Framework.lvlib and AF Debug.lvlib.
+
+The versions of these libraries that ship with LabVIEW 2024 Q3 have been backported for use with LabVIEW 2020 or later.  If you are working in one of these earlier versions, you can now take advantage of Uninit.vi, a new dynamic dispatch member of Actor.lvclass,  plus a small number of minor bug fixes.
+
+In addition, this version contains a major reorganization of the Actor Framework core libraries to facilitate PPL builds, with minimal changes to functionality.  Developers should be able to seamlessly update to this version of the framework, and then leverage its features and changes at their convenience.
+
+Finally, we have added a protected method to Actor.lvclass that sends a Normal Stop to its nested autostop actors, and we have added a few productivity and test support items to the palettes.  Please see the Release Notes for details.
+
+As a pre-install action, this package will archive your existing core libraries and palettes.  Should you wish to uninstall this package, your original libraries will be restored.  The archive is stored in a filed called AF.zip, which you can find in vi.lib.  Please do not delete this file, as you will lose the ability to restore the original files.
+
+This version DOES NOT update the Actor Framework project providers.  Updated project providers will be made available in a separate package, with its own update cadence.</Description>
       <Copyright>Copyright (c) 2024, NI</Copyright>
       <Packager>Allen C Smith</Packager>
       <URL/>
-      <Release_Notes>1.0.1.10 - Restored "Casting Utility For Actors.vim"</Release_Notes>
+      <Release_Notes>1.  Almost all of the contents of AF Debug.lvlib have been moved into Actor Framework.lvlib.  AF Debug.lvlib now only contains the code that sends traces to Desktop Execution Trace Toolkit and a few compatibility remnants.  DETT trace code is now encapsulated in a class (DETT Format.lvclass) that inherits from an interface (Trace Format.lvlcass) that resides in Actor Framework.lvlib.
+
+2.  Generate Trace.vi now dynamically loads a trace format.  If no trace format is specified, Generate Trace.vi will load DETT Format.lvclass as the default.  If users add the token AFDebugTraceFormat to their LabVIEW INI file, Generate Trace.vi will load that format instead.  AFDebugTraceFormat is a path saved as a string.
+
+3.  Actor registration has been streamlined; Actor.vi no longer has to send Register Actor Msg.lvclass to the new actor to complete registration.  Registration is performed directly in Actor Core.vi, just before message handling starts.
+
+4.  Stop Autostop Nested Actors.vi has been added.  Use this protected method to stop all of your autostop nested actors without stopping the actor.
+
+5.  Items have been added to a new subpalette to support automated testing of your actors.  These include the original Launch Actor.vi, Init Actor Queues FOR TESTING ONLY.vi, and a new VI, Test Launch for Nested Actor Without Caller.vi, useful for testing actors that run and then shut themselves down.
+
+6.  Enqueuer and Last Ack controls and constants have been added to the Functions and Controls palettes.
+
+7.  To improve the PPL build experience, the specialty messages (Batch, Reply, Report Error, and Self-Addressed) have been copied to new locations on disk, and the copies moved into libraries.  The copies of Report Error Msg and Self-Addressed Msg are now part of Actor Framework.lvlib.  The copies of Batch Msg and Reply Msg are members of a new library, AF Specialty Messages.lvlib.  To avoid breaking existing code, the original versions of these messages remain on disk, but are now DEPRECATED, and marked accordingly.  Developers are encouraged to migrate to the new library versions of these messages at their earliest convenience.</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -105,6 +127,12 @@
         <Preserve_Hierarchy>true</Preserve_Hierarchy>
         <Path>&lt;vi.lib&gt;\ActorFramework</Path>
       </Additional_Destination>
+      <Additional_Destination>
+        <Name>Palettes</Name>
+        <LLB>false</LLB>
+        <Preserve_Hierarchy>true</Preserve_Hierarchy>
+        <Path>&lt;menus&gt;</Path>
+      </Additional_Destination>
     </Destinations>
     <Source_Files>
       <Destination_Overrides>
@@ -131,6 +159,24 @@
         <Additional_Destination>true</Additional_Destination>
         <Additional_Destination_Index>1</Additional_Destination_Index>
       </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>Menus</Path>
+        <Destination>0</Destination>
+        <Additional_Destination>false</Additional_Destination>
+        <Additional_Destination_Index>0</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>Menus/Categories</Path>
+        <Destination>0</Destination>
+        <Additional_Destination>true</Additional_Destination>
+        <Additional_Destination_Index>2</Additional_Destination_Index>
+      </Destination_Overrides>
+      <Destination_Overrides>
+        <Path>Menus/Controls</Path>
+        <Destination>0</Destination>
+        <Additional_Destination>true</Additional_Destination>
+        <Additional_Destination_Index>2</Additional_Destination_Index>
+      </Destination_Overrides>
       <Password_Overrides>
         <Path>.</Path>
         <Password/>
@@ -142,25 +188,19 @@
         <Namespace/>
       </Namespace_Overrides>
       <Exclusions>
-        <Path>_actorframework_experttools.mnu</Path>
-      </Exclusions>
-      <Exclusions>
-        <Path>_actorframework_msgqueuepair.mnu</Path>
-      </Exclusions>
-      <Exclusions>
         <Path>Actor Framework Core.lvproj</Path>
       </Exclusions>
       <Exclusions>
-        <Path>actorframework.mnu</Path>
+        <Path>Testing</Path>
       </Exclusions>
       <Exclusions>
-        <Path>Install Support/Populate Zip File.vi</Path>
+        <Path>AF PPL Build.lvproj</Path>
       </Exclusions>
       <Exclusions>
-        <Path>Install Support/Restore Framework.vi</Path>
+        <Path>builds</Path>
       </Exclusions>
       <Exclusions>
-        <Path>Install Support/Stash Framework.vi</Path>
+        <Path>AF Debug PPL Build.lvproj</Path>
       </Exclusions>
       <Place_Folder_Contents>
         <Path/>
@@ -194,9 +234,9 @@
         <Syncing_MNU_file/>
       </Controls_Palette_Information>
       <Functions_Palette_Information>
-        <Virtual_Palette_Base_Path>Functions</Virtual_Palette_Base_Path>
-        <Palette_Disk_Base_Path>&lt;menus&gt;\Categories</Palette_Disk_Base_Path>
-        <Syncing_MNU_file/>
+        <Virtual_Palette_Base_Path>Functions\Data Communication</Virtual_Palette_Base_Path>
+        <Palette_Disk_Base_Path>&lt;menus&gt;\Categories\Data Communication</Palette_Disk_Base_Path>
+        <Syncing_MNU_file>&lt;menus&gt;\Categories\Data Communication\dir.mnu</Syncing_MNU_file>
       </Functions_Palette_Information>
       <Apply_Short_Names_to_VI_Titles>false</Apply_Short_Names_to_VI_Titles>
       <Apply_Short_Names_to_VI_Titles_2>false</Apply_Short_Names_to_VI_Titles_2>
