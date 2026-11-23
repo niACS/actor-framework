@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2024-10-24 12:51:32" Modified_Date="2026-11-20 13:39:36" Creator="allen" Comments="" ID="77e08f745d45d944490336a644eee859">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2024-10-24 12:51:32" Modified_Date="2026-08-21 14:08:45" Creator="allen" Comments="" ID="3e6899e231921e597362903647edae9e">
   <Library_General_Settings>
-    <Package_File_Name>Actor_Framework_Project_Providers_Message_Interface</Package_File_Name>
-    <Library_Version>1.0.0.3</Library_Version>
+    <Package_File_Name>Actor_Framework_Project_Providers_2024_for_2020</Package_File_Name>
+    <Library_Version>1.2.0.11</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>..\Builds</Library_Output_Folder>
@@ -34,7 +34,7 @@
       <Copyright>Copyright (c) 2024, NI</Copyright>
       <Packager>Allen C Smith</Packager>
       <URL/>
-      <Release_Notes>This release shrinks the footprint of block diagrams protected by passwords.</Release_Notes>
+      <Release_Notes>- Adds the Actor Framework related right-click menus for projects with interfaces, but without Actor classes in the project.</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>

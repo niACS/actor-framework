@@ -12,8 +12,7 @@ on:
   pull_request:
     branches:
       - main
-      - develop
-      - release/*
+      - releases/*
       - feature/*
       - hotfix/*
     types:
@@ -25,8 +24,7 @@ on:
   push:
     branches:
       - main
-      - develop
-      - release/*
+      - releases/*
       - hotfix/*
       - feature/*
 
@@ -36,7 +34,7 @@ jobs:
   via-tests:
     name: Run VI Analyzer tests
     runs-on: ubuntu-latest
-
+    timeout-minutes: 25
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -47,8 +45,9 @@ jobs:
         uses: ni/open-source/via-lv-docker@actions
         with:
           config_path: ${{ github.event_name == 'workflow_dispatch' && '.github/via_config/Actor_Framework.viancfg' || '' }}
-          base_branch: origin/${{ github.event.pull_request.base.ref || 'develop' }}
-          labview_version: 'latest-linux'
+          template_path: '.github/via_config/Actor_Framework.viancfg'
+          base_branch: origin/${{ github.event.pull_request.base.ref || 'main' }}
+          dependency_file: '.github/labview-dependencies.toml'
 
       - name: Upload VI Analyzer Report
         uses: actions/upload-artifact@v6
@@ -58,12 +57,44 @@ jobs:
           path: vi-analyzer-report.htm
           retention-days: 7 
  
+  generate-sbom:
+    name: Generate SBOM
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/generate-sbom.yml
+
+  lunit-tests:
+    name: Run LUnit tests
+    uses: ./.github/workflows/lunit-container-tests.yml
+
   create-artifact:
     name: Create distribution artifact
     needs: via-tests
     uses: ./.github/workflows/create-distribution-artifact.yml
     with:
       upload-artifact: true
+
+  build-vip:
+    name: Build VIP
+    needs: create-artifact
+    if: github.event_name == 'push'
+    permissions:
+      actions: read
+      contents: read
+    uses: ni/open-source/.github/workflows/reusable-build-vip-linux.yml@actions
+    with:
+      labview_version: '2026q1'
+      download_artifact_name: actor-framework-distribution
+      download_path: .af-distribution
+      pre_build_script: pipeline/scripts/Prepare-AF-Linux-Vip.sh
+      vipb_path: builds/logs/vip-linux/Actor Framework.linux.vipb
+      source_directory: /tmp/af-source/Core
+      desktop_liveliness_timeout: '900'
+      vip_artifact_name: actor_framework_vip
+      logs_artifact_name: actor_framework_vip_logs
+    secrets:
+      VIPM_SERIAL_NUMBER: ${{ secrets.VIPM_SERIAL_NUMBER }}
+      VIPM_FULL_NAME: ${{ secrets.VIPM_FULL_NAME }}
+      VIPM_EMAIL: ${{ secrets.VIPM_EMAIL }}
 
   install-into-labview:
     name: Mass Compile Actor Framework VIs
